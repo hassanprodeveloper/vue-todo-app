@@ -1,12 +1,7 @@
 <template>
   <div>
     <Navbar />
-    <nav>
-      <router-link to="/">Welcome</router-link> |
-      <router-link to="/login">Login</router-link> |
-      <router-link to="/signup">Signup</router-link> |
-      <router-link to="/todos">Todos</router-link>
-    </nav>
+
     <router-view />
   </div>
 </template>
@@ -20,3 +15,14 @@ export default {
   },
 };
 </script>
+
+<style >
+a {
+  color: inherit;
+  text-decoration: none;
+}
+a:hover {
+  color: inherit;
+  text-decoration: none;
+}
+</style>
