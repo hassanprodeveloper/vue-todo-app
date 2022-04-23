@@ -1,23 +1,39 @@
-import { createRouter, createWebHashHistory } from "vue-router";
-import HomeView from "../views/HomeView.vue";
-import AboutView from "../views/AboutView.vue";
+import { createRouter, createWebHistory } from "vue-router";
+import LoginView from "@/views/LoginView";
+import SignupView from "@/views/SignupView";
+import WelcomeView from "@/views/WelcomeView";
+import TodosView from "@/views/TodosView";
 
 const routes = [
   {
     path: "/",
-    name: "home",
-    component: HomeView,
+    name: "welcome",
+    component: WelcomeView,
   },
   {
-    path: "/about",
-    name: "about",
-    component: AboutView,
+    path: "/login",
+    name: "login",
+    component: LoginView,
+    meta: { guest: true },
+  },
+  {
+    path: "/signup",
+    name: "signup",
+    component: SignupView,
+    meta: { guest: true },
+  },
+  {
+    path: "/todos",
+    name: "todos",
+    component: TodosView,
+    meta: { requiresAuth: true },
   },
 ];
 
 const router = createRouter({
-  history: createWebHashHistory(),
+  history: createWebHistory(),
   routes,
+  mode: "history",
 });
 
 export default router;
