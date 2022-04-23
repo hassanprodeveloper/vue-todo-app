@@ -1,8 +1,9 @@
 <template>
   <div>
     <Navbar />
-
-    <router-view />
+    <div class="h-custom">
+      <router-view />
+    </div>
   </div>
 </template>
 
@@ -17,6 +18,9 @@ export default {
 </script>
 
 <style >
+.h-custom {
+  height: calc(100vh - 60px);
+}
 a {
   color: inherit;
   text-decoration: none;
