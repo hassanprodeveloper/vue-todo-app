@@ -1,5 +1,7 @@
 <template >
-  <div class="d-flex justify-content-center align-items-center paginationContainer">
+  <div
+    class="d-flex justify-content-center align-items-center paginationContainer"
+  >
     <nav aria-label="...">
       <ul class="pagination">
         <li
@@ -13,8 +15,10 @@
     </nav>
   </div>
 </template>
+
 <script>
 import { mapGetters } from "vuex";
+
 export default {
   name: "TodosPagination",
   computed: {
