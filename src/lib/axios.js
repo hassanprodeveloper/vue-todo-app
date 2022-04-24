@@ -16,13 +16,31 @@ export const postFormData = async (API_END_POINT, data) => {
     const response = await API.post(API_END_POINT, data, {
       headers: {
         "Content-Type": "multipart/form-data",
-        "Authorization": token ? `Bearer ${token}` : "",
+        Authorization: token ? `Bearer ${token}` : "",
       },
     });
 
     return response.data;
   } catch (error) {
     console.log(`postFormData ${API_END_POINT} catch error`, error);
+    return;
+  }
+};
+
+export const getData = async (API_END_POINT) => {
+  const token = store.state.auth.user?.token;
+
+  try {
+    const response = await API.get(API_END_POINT, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+        Authorization: token ? `Bearer ${token}` : "",
+      },
+    });
+
+    return response.data;
+  } catch (error) {
+    console.log(`getData ${API_END_POINT} catch error`, error);
     return;
   }
 };
