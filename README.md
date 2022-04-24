@@ -20,13 +20,13 @@ hassanakram.n@gmail.com
 ```
 #### Linkedin Profile 
 ```
-[Link to Google](https://www.linkedin.com/in/hassanakram-n/)
+https://www.linkedin.com/in/hassanakram-n/
 ```
 #### Github 
 ```
-[Link to Google](https://github.com/hassanakram-n/)
+https://github.com/hassanakram-n/
 ```
 #### Resume  
 ```
-[Link to Google](https://drive.google.com/file/d/1AEabKbDpvtk6EIAwfpD26FK--OK9RfuW/view?usp=sharing)
+https://drive.google.com/file/d/1AEabKbDpvtk6EIAwfpD26FK--OK9RfuW/view?usp=sharing
 ```
