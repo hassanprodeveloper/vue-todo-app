@@ -68,9 +68,11 @@ import TodosPagination from "@/components/TodosPagination.vue";
 
 export default {
   name: "TodosView",
+
   components: {
     TodosPagination,
   },
+
   computed: {
     ...mapGetters({
       todos: "TodosList",
@@ -124,8 +126,9 @@ export default {
   height: 5rem;
   border-radius: 50%;
 }
+
 .card {
   margin: 2rem;
   border: none !important;
 }
-</style>
+</style>  

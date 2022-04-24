@@ -8,9 +8,12 @@
           alt="Sample image"
         />
       </div>
+
       <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
         <h1>Login</h1>
+
         <br />
+
         <form @submit.prevent="submit">
           <!-- Email input -->
           <div class="form-outline mb-4">
@@ -21,6 +24,7 @@
               placeholder="Enter a valid email address"
               v-model="form.email"
             />
+
             <label class="form-label" for="form3Example3">Email address</label>
           </div>
 
@@ -33,6 +37,7 @@
               placeholder="Enter password"
               v-model="form.password"
             />
+
             <label class="form-label" for="form3Example4">Password</label>
           </div>
 
@@ -44,6 +49,7 @@
             >
               Login
             </button>
+
             <p class="small fw-bold mt-2 pt-1 mb-0">
               Don't have an account?
               <router-link to="/signup" class="link-danger"
@@ -59,8 +65,10 @@
 
 <script>
 import { mapActions } from "vuex";
+
 export default {
   name: "LoginView",
+
   data() {
     return {
       form: {
@@ -69,22 +77,23 @@ export default {
       },
     };
   },
+
   methods: {
     ...mapActions(["LoginAction"]),
+
     async submit() {
       let { email, password } = this.form;
+
       if (email && password) {
         const resp = await this.LoginAction(this.form);
 
         if (!resp) {
-          alert("Invalid Email or Password"); 
+          alert("Invalid Email or Password");
           return;
         }
 
         this.$router.push("/todos");
-      } else {
-        alert("Please enter email and password and try again");
-      }
+      } else alert("Please enter email and password and try again");
     },
   },
 };

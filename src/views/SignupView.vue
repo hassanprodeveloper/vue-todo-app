@@ -8,9 +8,11 @@
           alt="Sample image"
         />
       </div>
+
       <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
         <h1>Create Account</h1>
         <br />
+
         <form @submit.prevent="submit">
           <!-- Email input -->
           <div class="form-outline mb-4">
@@ -21,6 +23,7 @@
               placeholder="Enter a valid email address"
               v-model="form.email"
             />
+
             <label class="form-label" for="form3Example3">Email address</label>
           </div>
 
@@ -33,6 +36,7 @@
               placeholder="Enter password"
               v-model="form.password"
             />
+
             <label class="form-label" for="form3Example4">Password</label>
           </div>
 
@@ -45,6 +49,7 @@
               placeholder="Re-enter password"
               v-model="form.password_confirmation"
             />
+
             <label class="form-label" for="form3Example4"
               >Confirm Password</label
             >
@@ -58,6 +63,7 @@
             >
               Sign up
             </button>
+
             <p class="small fw-bold mt-2 pt-1 mb-0">
               Already have an account?
               <router-link to="/login" class="link-danger">Login</router-link>
@@ -71,8 +77,10 @@
 
 <script>
 import { mapActions } from "vuex";
+
 export default {
   name: "SignupView",
+
   data() {
     return {
       form: {
@@ -83,8 +91,10 @@ export default {
       },
     };
   },
+
   methods: {
     ...mapActions(["SignupAction"]),
+
     async submit() {
       let { email, password, password_confirmation } = this.form;
       if (email && password && password_confirmation) {
@@ -102,4 +112,4 @@ export default {
     },
   },
 };
-</script>
+</script>        

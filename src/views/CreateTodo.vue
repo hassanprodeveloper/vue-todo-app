@@ -5,6 +5,7 @@
         <div class="card bg-light" style="border-radius: 1rem">
           <div class="card-body p-5 text-center">
             <h2 class="fw-bold mb-2 text-uppercase">{{ pageTitle }} Todo</h2>
+
             <p class="mb-5">Please enter title and description</p>
 
             <div class="form-outline form-white mb-4">
@@ -14,6 +15,7 @@
                 class="form-control form-control-lg"
                 v-model="todo.title"
               />
+
               <label class="form-label" for="TitleInput"><h4>Title</h4></label>
             </div>
 
@@ -24,6 +26,7 @@
                 rows="3"
                 v-model="todo.description"
               />
+
               <label class="form-label" for="descriptionInput">
                 <h4>Description</h4>
               </label>
@@ -42,6 +45,7 @@
               {{ pageTitle }}
             </button>
           </div>
+
           <button @click="handleCancel" type="button" class="btn btn-link mb-4">
             Cancel
           </button>
@@ -49,26 +53,31 @@
       </div>
     </div>
   </div>
-</template>
+</template>      
 
 <script>
 import { mapActions, mapGetters } from "vuex";
+
 export default {
   name: "CreateTodo",
+
   data() {
     return {
       pageTitle: "",
+
       todo: {
         title: "",
         description: "",
       },
     };
   },
+
   computed: {
     ...mapGetters({
       loading: "Loading",
     }),
   },
+
   methods: {
     ...mapActions(["CreateTodoAction", "UpdateTodoAction"]),
 
@@ -91,9 +100,7 @@ export default {
         }
 
         this.$router.push("/todos");
-      } else {
-        alert("Please fill all fields");
-      }
+      } else alert("Please fill all fields");
     },
 
     handleCancel() {
@@ -109,6 +116,7 @@ export default {
 
   created() {
     this.pageTitle = this.$route.params.handler || "create";
+
     this.todo = this.$route.query || {};
   },
 };
