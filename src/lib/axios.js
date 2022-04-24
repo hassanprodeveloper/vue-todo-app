@@ -32,7 +32,7 @@ export const getData = async (API_END_POINT) => {
   try {
     const response = await API.get(API_END_POINT, {
       headers: {
-        "Content-Type": "multipart/form-data",
+        "Content-Type": "application/json",
         "Authorization": token ? `Bearer ${token}` : "",
       },
     });
@@ -72,6 +72,23 @@ export const deleteData = async (API_END_POINT) => {
     });
 
     return true;
+  } catch (error) {
+    catchBlockErrorHandler(error);
+  }
+};
+
+export const getDataWithCustomURL = async (URL) => {
+  const token = store.state.auth.user?.token;
+
+  try {
+    const response = await axios.get(URL, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+        "Authorization": token ? `Bearer ${token}` : "",
+      },
+    });
+
+    return response.data;
   } catch (error) {
     catchBlockErrorHandler(error);
   }

@@ -9,7 +9,14 @@
           :key="page.label"
           v-bind:class="page.url ? 'page-item' : 'page-item disabled'"
         >
-          <a class="page-link" href="#">{{ page.label }}</a>
+          <button
+            @click="handlePaginationButtonClick(page.url)"
+            v-bind:class="`page-link ${
+              current_page == page.label && 'bg-warning'
+            }`"
+          >
+            {{ page.label }}
+          </button>
         </li>
       </ul>
     </nav>
@@ -17,14 +24,23 @@
 </template>
 
 <script>
-import { mapGetters } from "vuex";
+import { mapActions, mapGetters } from "vuex";
 
 export default {
   name: "TodosPagination",
   computed: {
     ...mapGetters({
       pagination: "Pagination",
+      current_page: "CurrentPage",
     }),
+  },
+
+  methods: {
+    ...mapActions(["GetTodosPaginationDataAction"]),
+
+    async handlePaginationButtonClick(URL) {
+      await this.GetTodosPaginationDataAction(URL);
+    },
   },
 };
 </script>
