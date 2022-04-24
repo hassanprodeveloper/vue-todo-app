@@ -11,7 +11,7 @@
       <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
         <h1>Login</h1>
         <br />
-        <form>
+        <form @submit.prevent="submit">
           <!-- Email input -->
           <div class="form-outline mb-4">
             <input
@@ -19,6 +19,7 @@
               id="form3Example3"
               class="form-control form-control-lg"
               placeholder="Enter a valid email address"
+              v-model="form.email"
             />
             <label class="form-label" for="form3Example3">Email address</label>
           </div>
@@ -30,13 +31,14 @@
               id="form3Example4"
               class="form-control form-control-lg"
               placeholder="Enter password"
+              v-model="form.password"
             />
             <label class="form-label" for="form3Example4">Password</label>
           </div>
 
           <div class="text-center text-lg-start mt-4 pt-2">
             <button
-              type="button"
+              type="submit"
               class="btn btn-primary btn-lg"
               style="padding-left: 2.5rem; padding-right: 2.5rem"
             >
@@ -56,7 +58,34 @@
 </template>
 
 <script>
+import { mapActions } from "vuex";
 export default {
   name: "LoginView",
+  data() {
+    return {
+      form: {
+        email: "",
+        password: "",
+      },
+    };
+  },
+  methods: {
+    ...mapActions(["LoginAction"]),
+    async submit() {
+      let { email, password } = this.form;
+      if (email && password) {
+        const resp = await this.LoginAction(this.form);
+
+        if (!resp) {
+          alert("Invalid Email or Password"); 
+          return;
+        }
+
+        this.$router.push("/todos");
+      } else {
+        alert("Please enter email and password and try again");
+      }
+    },
+  },
 };
 </script>
