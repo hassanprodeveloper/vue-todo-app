@@ -1,19 +1,32 @@
-# vue-todo-app
+# brand786assignment
 
-## Project setup
-```
-npm install
-```
+## Project Details
+#### Packages Used
+    * bootstrap
+    * vue-router
+    * axios
+    * vuex
+    * vuex-persistedstate
+## Personal Information
 
-### Compiles and hot-reloads for development
+### Muhammad Hassan
+#### Email
 ```
-npm run serve
+hassanakram.n@gmail.com
 ```
-
-### Compiles and minifies for production
+#### Contact Number 
 ```
-npm run build
++923047955183
 ```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+#### Linkedin Profile 
+```
+https://www.linkedin.com/in/hassanakram-n/
+```
+#### Github 
+```
+https://github.com/hassanakram-n/
+```
+#### Resume  
+```
+https://drive.google.com/file/d/1AEabKbDpvtk6EIAwfpD26FK--OK9RfuW/view?usp=sharing
+```
