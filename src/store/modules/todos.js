@@ -18,13 +18,14 @@ const actions = {
     const response = await getData(todosList);
 
     if (response === "Unauthorized") {
-      dispatch("auth/LogoutAction", { root: true });
+      await dispatch("auth/LogoutAction", null, { root: true });
       return;
     }
     if (!response) return false;
 
     await commit("setData", response.items.data);
     await commit("setLinks", response.items.links);
+
     return true;
   },
 
@@ -36,11 +37,13 @@ const actions = {
     Todo.append("description", description);
 
     await commit("setLoading", true);
+
     const response = await postFormData(todo, Todo);
+
     await commit("setLoading", false);
 
     if (response === "Unauthorized") {
-      dispatch("auth/LogoutAction", { root: true });
+      await dispatch("auth/LogoutAction", null, { root: true });
       return;
     }
     if (!response) return false;
@@ -50,16 +53,17 @@ const actions = {
 
   async UpdateTodoAction({ commit, dispatch }, form) {
     let { title, description } = form;
-    console.log("update todo action form data", form);
 
     let Todo = JSON.stringify({ title, description });
 
     await commit("setLoading", true);
+
     const response = await putData(`${todo}/${form.id}`, Todo);
+
     await commit("setLoading", false);
 
     if (response === "Unauthorized") {
-      dispatch("auth/LogoutAction", { root: true });
+      await dispatch("auth/LogoutAction", null, { root: true });
       return;
     }
     if (!response) return false;
@@ -75,7 +79,6 @@ const actions = {
     await commit("setLoading", false);
 
     if (response === "Unauthorized") {
-      console.log("delete todo un auth");
       await dispatch("auth/LogoutAction", null, { root: true });
       return;
     }
@@ -93,9 +96,11 @@ const mutations = {
   setLoading(state, loading) {
     state.loading = loading;
   },
+
   setData(state, data) {
     state.data = data;
   },
+
   setLinks(state, links) {
     state.links = links;
   },
