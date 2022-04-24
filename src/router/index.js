@@ -6,6 +6,7 @@ import LoginView from "@/views/LoginView";
 import SignupView from "@/views/SignupView";
 import WelcomeView from "@/views/WelcomeView";
 import TodosView from "@/views/TodosView";
+import CreateTodo from "@/views/CreateTodo";
 
 const routes = [
   {
@@ -29,6 +30,12 @@ const routes = [
     path: "/todos",
     name: "todos",
     component: TodosView,
+    meta: { requiresAuth: true },
+  },
+  {
+    path: "/todo/:handler",
+    name: "CreateTodo",
+    component: CreateTodo,
     meta: { requiresAuth: true },
   },
 ];
