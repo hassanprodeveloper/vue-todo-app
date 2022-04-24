@@ -29,10 +29,22 @@
               </label>
             </div>
 
-            <button class="btn btn-primary btn-lg px-5 text-capitalize">
+            <button
+              @click="handleSubmitClick"
+              class="btn btn-primary btn-lg px-5 text-capitalize"
+            >
+              <span
+                class="spinner-border spinner-border-sm"
+                role="status"
+                v-if="loading"
+              />
+
               {{ pageTitle }}
             </button>
           </div>
+          <button @click="handleCancel" type="button" class="btn btn-link mb-4">
+            Cancel
+          </button>
         </div>
       </div>
     </div>
@@ -40,6 +52,7 @@
 </template>
 
 <script>
+import { mapActions, mapGetters } from "vuex";
 export default {
   name: "CreateTodo",
   data() {
@@ -51,9 +64,51 @@ export default {
       },
     };
   },
-  created() {
-    this.pageTitle = this.$route.params.handler || "Create";
+  computed: {
+    ...mapGetters({
+      loading: "Loading",
+    }),
+  },
+  methods: {
+    ...mapActions(["CreateTodoAction", "UpdateTodoAction"]),
 
+    async handleSubmitClick() {
+      let { title, description } = this.todo;
+      if (title && description) {
+        let response;
+
+        if (this.pageTitle === "create") {
+          response = await this.CreateTodoAction(this.todo);
+        }
+
+        if (this.pageTitle === "update") {
+          response = await this.UpdateTodoAction(this.todo);
+        }
+
+        if (!response) {
+          alert("Something went wrong, please try again");
+          return;
+        }
+
+        this.$router.push("/todos");
+      } else {
+        alert("Please fill all fields");
+      }
+    },
+
+    handleCancel() {
+      let { title, description } = this.todo;
+      let confirmation = true;
+
+      if (title || description)
+        confirmation = confirm("By Canceling you may lose your updates.");
+
+      if (confirmation) this.$router.back();
+    },
+  },
+
+  created() {
+    this.pageTitle = this.$route.params.handler || "create";
     this.todo = this.$route.query || {};
   },
 };

@@ -48,11 +48,11 @@ const actions = {
   },
 
   async LogoutAction({ commit, state }) {
+    await commit("setUser", null);
+
     const response = await postFormData(logout, state.user.token);
 
     if (!response) return false;
-
-    await commit("setUser", null);
 
     return true;
   },
