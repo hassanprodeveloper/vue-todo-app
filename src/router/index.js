@@ -1,4 +1,7 @@
 import { createRouter, createWebHistory } from "vue-router";
+
+import store from "@/store";
+
 import LoginView from "@/views/LoginView";
 import SignupView from "@/views/SignupView";
 import WelcomeView from "@/views/WelcomeView";
@@ -34,6 +37,30 @@ const router = createRouter({
   history: createWebHistory(),
   routes,
   mode: "history",
+});
+
+router.beforeEach((to, from, next) => {
+  if (to.matched.some((record) => record.meta.requiresAuth)) {
+    if (store.getters.isAuthenticated) {
+      next();
+      return;
+    }
+    next("/login");
+  } else {
+    next();
+  }
+});
+
+router.beforeEach((to, from, next) => {
+  if (to.matched.some((record) => record.meta.guest)) {
+    if (store.getters.isAuthenticated) {
+      next("/todos");
+      return;
+    }
+    next();
+  } else {
+    next();
+  }
 });
 
 export default router;

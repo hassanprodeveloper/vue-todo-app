@@ -1,4 +1,4 @@
-import { login, signup } from "@/constants/api";
+import { login, logout, signup } from "@/constants/api";
 import { postFormData } from "@/lib/axios";
 
 const state = {
@@ -43,6 +43,16 @@ const actions = {
     if (!userData) return false;
 
     await commit("setUser", userData.user);
+
+    return true;
+  },
+
+  async LogoutAction({ commit, state }) {
+    const response = await postFormData(logout, state.user.token);
+
+    if (!response) return false;
+
+    await commit("setUser", null);
 
     return true;
   },
